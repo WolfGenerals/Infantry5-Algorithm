@@ -131,15 +131,15 @@ class PredictorNode final : public rclcpp::Node {
                 10,
                 [this](const PointStamped::SharedPtr msg) -> void {
                     if (!buffer.canTransform(
-                        "base_link",
+                        "odom",
                         msg->header.frame_id,
                         tf2::TimePointZero
                     )) {
-                        RCLCPP_WARN(get_logger(), "can not get transform from %s to base_link", msg->header.frame_id.c_str());
+                        RCLCPP_WARN(get_logger(), "can not get transform from %s to odom", msg->header.frame_id.c_str());
                         return;
                     }
 
-                    const auto pointStamped = buffer.transform(*msg, "base_link");
+                    const auto pointStamped = buffer.transform(*msg, "odom");
 
                     lastTarget = {
                                 static_cast<float>(pointStamped.point.x),
@@ -155,14 +155,14 @@ class PredictorNode final : public rclcpp::Node {
                 10,
                 [this](const PointStamped::SharedPtr msg) -> void {
                     if (!buffer.canTransform(
-                        "base_link",
+                        "odom",
                         msg->header.frame_id,
                         tf2::TimePointZero
                     )) {
-                        RCLCPP_WARN(get_logger(), "can not get transform from %s to base_link", msg->header.frame_id.c_str());
+                        RCLCPP_WARN(get_logger(), "can not get transform from %s to odom", msg->header.frame_id.c_str());
                         return;
                     }
-                    const auto pointStamped = buffer.transform(*msg, "base_link");
+                    const auto pointStamped = buffer.transform(*msg, "odom");
                     centers.update(
                         {
                             static_cast<float>(pointStamped.point.x),
@@ -192,7 +192,7 @@ class PredictorNode final : public rclcpp::Node {
                     Vec3       prediction = rmat * (lastTarget - center) + center;
 
                     PointStamped msg;
-                    msg.header.frame_id = "base_link";
+                    msg.header.frame_id = "odom";
                     msg.header.stamp    = now;
                     msg.point.x         = prediction(0);
                     msg.point.y         = prediction(1);

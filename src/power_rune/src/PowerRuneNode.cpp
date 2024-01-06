@@ -176,7 +176,7 @@ class PowerRuneNode final : public rclcpp::Node {
 
     Subscription<ImageMsg>::SharedPtr image_subscriber =
             create_subscription<ImageMsg>(
-                "/camera",
+                "/image_raw",
                 10,
                 [this](const ImageMsg::SharedPtr imageRos) -> void {
                     const cv_bridge::CvImageConstPtr image = cv_bridge::toCvShare(imageRos);
