@@ -45,7 +45,7 @@ class PowerRuneNode final : public rclcpp::Node {
         if (rawData.size() % 3 != 0)
             RCLCPP_ERROR(get_logger(), "world_points size error");
 
-        for (int i = 0; i < rawData.size(); i += 3) {
+        for (unsigned long i = 0; i < rawData.size(); i += 3) {
             points.emplace_back(rawData[i], rawData[i + 1], rawData[i + 2]);
         }
         return points;
@@ -61,7 +61,7 @@ class PowerRuneNode final : public rclcpp::Node {
         if (rawData.size() % 2 != 0)
             RCLCPP_ERROR(get_logger(), "image_points size error");
 
-        for (int i = 0; i < rawData.size(); i += 2) {
+        for (unsigned long i = 0; i < rawData.size(); i += 2) {
             points.emplace_back(rawData[i], rawData[i + 1]);
         }
         return points;
