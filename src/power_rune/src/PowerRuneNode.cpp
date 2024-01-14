@@ -182,15 +182,15 @@ class PowerRuneNode final : public rclcpp::Node {
                     const auto rawCameraMatrix = cameraInfo->k;
                     const auto rawDistCoeffs   = cameraInfo->d;
                     cameraMatrix               = {
-                                rawCameraMatrix[0],
-                                rawCameraMatrix[1],
-                                rawCameraMatrix[2],
-                                rawCameraMatrix[3],
-                                rawCameraMatrix[4],
-                                rawCameraMatrix[5],
-                                rawCameraMatrix[6],
-                                rawCameraMatrix[7],
-                                rawCameraMatrix[8]
+                                static_cast<float>(rawCameraMatrix[0]),
+                                static_cast<float>(rawCameraMatrix[1]),
+                                static_cast<float>(rawCameraMatrix[2]),
+                                static_cast<float>(rawCameraMatrix[3]),
+                                static_cast<float>(rawCameraMatrix[4]),
+                                static_cast<float>(rawCameraMatrix[5]),
+                                static_cast<float>(rawCameraMatrix[6]),
+                                static_cast<float>(rawCameraMatrix[7]),
+                                static_cast<float>(rawCameraMatrix[8])
                             };
                     distCoeffs = {
                                 static_cast<float>(rawDistCoeffs[0]),
@@ -298,6 +298,5 @@ int main(const int argc, char** argv) {
     init(argc, argv);
     const auto powerRuneNode = std::make_shared<PowerRuneNode>();
     spin(powerRuneNode);
-    printf("hello world power_rune package\n");
     return 0;
 }
