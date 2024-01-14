@@ -3,7 +3,7 @@
 
 #include "../Alias.hpp"
 #include "opencv2/opencv.hpp"
-#include "opencv2/xfeatures2d.hpp"
+// #include "opencv2/xfeatures2d.hpp"
 
 static inline const cv::Ptr<cv::Feature2D> detector = cv::ORB::create(500, 2, 1, 31, 0, 2, cv::ORB::HARRIS_SCORE, 127, 20);
 static inline const cv::Ptr<cv::Feature2D> computer = detector;
