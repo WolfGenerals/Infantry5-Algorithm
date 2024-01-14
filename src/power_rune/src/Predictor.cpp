@@ -59,7 +59,7 @@ public:
         if (avrage < 0) reverse = true;
     }
 
-    double radius(const double from, const double to) const {
+    [[nodiscard]] double radius(const double from, const double to) const {
         switch (state) {
             case State::SMALL:
                 return (reverse ? -SMALL : SMALL) * (to - from);
