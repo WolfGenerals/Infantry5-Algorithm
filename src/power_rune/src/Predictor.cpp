@@ -111,7 +111,7 @@ class PredictorNode final : public rclcpp::Node {
     }
 
     Publisher<PointStamped>::SharedPtr publisher =
-            create_publisher<PointStamped>("prediction", 10);
+            create_publisher<PointStamped>("/prediction", 10);
 
 
     Subscription<Float64MultiArray>::SharedPtr angularVelocitySubscriber =
